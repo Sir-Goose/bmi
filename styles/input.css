@@ -20,11 +20,40 @@
   --th-font-number: "JetBrains Mono", monospace;
   --th-focus-ring: 0 0 0 3px #ff0000;
   --th-accent-line: #000000;
+  --th-toggle-active-bg: #000000;
+  --th-toggle-active-text: #ffffff;
   --cat-underweight: #0000ff;
   --cat-normal: #008000;
   --cat-overweight: #ff8c00;
   --cat-obese: #ff0000;
   --gauge-marker: #000000;
+}
+
+/* ================================================================
+   AUTO DARK MODE — matches device theme via prefers-color-scheme.
+   Overrides only the theme variables; component rules are untouched.
+   ================================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --th-bg: #000000;
+    --th-card-bg: #000000;
+    --th-text: #ffffff;
+    --th-text-muted: #888888;
+    --th-accent: #ff2b2b;
+    --th-border: #ffffff;
+    --th-input-bg: #000000;
+    --th-input-border: #ffffff;
+    --th-shadow: 6px 6px 0px #ffffff;
+    --th-focus-ring: 0 0 0 3px #ff2b2b;
+    --th-accent-line: #ffffff;
+    --th-toggle-active-bg: #ffffff;
+    --th-toggle-active-text: #000000;
+    --cat-underweight: #5b8def;
+    --cat-normal: #4ade80;
+    --cat-overweight: #ffb347;
+    --cat-obese: #ff5252;
+    --gauge-marker: #ffffff;
+  }
 }
 
 /* ================================================================
@@ -151,8 +180,8 @@
   }
 
   .th-toggle-btn-active {
-    background: #000000;
-    color: #ffffff;
+    background: var(--th-toggle-active-bg);
+    color: var(--th-toggle-active-text);
   }
 
   .th-fields { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
