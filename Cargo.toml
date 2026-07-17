@@ -1,0 +1,18 @@
+[package]
+name = "bmi-calculator"
+version = "0.1.0"
+edition = "2024"
+description = "A simple BMI calculator built with Leptos and Tailwind"
+license = "MIT"
+
+[dependencies]
+leptos = { version = "0.8", features = ["csr"] }
+console_log = "1"
+log = "0.4"
+console_error_panic_hook = "0.1"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"

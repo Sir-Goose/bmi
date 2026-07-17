@@ -1,0 +1,21 @@
+# Source files & deps
+src/
+styles/input.css
+node_modules/
+target/
+dist/
+
+# Config files (not needed in deploy output)
+.git/
+.gitignore
+.opencode/
+build.sh
+Cargo.toml
+Cargo.lock
+Trunk.toml
+package.json
+package-lock.json
+rust-toolchain.toml
+wrangler.toml
+README.md
+*.md

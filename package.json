@@ -1,0 +1,12 @@
+{
+  "name": "bmi-calculator",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i styles/input.css -o styles/output.css --minify",
+    "watch:css": "tailwindcss -i styles/input.css -o styles/output.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
+  }
+}
