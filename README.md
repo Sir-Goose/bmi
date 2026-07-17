@@ -2,6 +2,8 @@
 
 A simple, static BMI calculator built with **Rust (Leptos 0.8)**, **Trunk**, and **Tailwind CSS v4**, compiled to WebAssembly. Deployable as a static site on Cloudflare Pages.
 
+**Live demo:** https://bmi-2jk.pages.dev/
+
 ## Features
 
 - Metric (cm / kg) and Imperial (ft+in / lbs) unit toggle with live conversion
