@@ -1,7 +1,13 @@
 use leptos::prelude::*;
 
+use crate::drum::DrumPicker;
+
 const CM_PER_INCH: f64 = 2.54;
 const KG_PER_LB: f64 = 0.45359237;
+
+fn range_strings(start: i64, end: i64) -> Vec<String> {
+    (start..=end).map(|n| n.to_string()).collect()
+}
 
 #[derive(Clone, Copy, PartialEq)]
 enum UnitSystem {
@@ -71,8 +77,8 @@ pub fn App() -> impl IntoView {
                 let lbs: f64 = weight_lbs_str.get().parse().unwrap_or(0.0);
                 let cm = (ft * 12.0 + inch) * CM_PER_INCH;
                 let kg = lbs * KG_PER_LB;
-                set_height_cm_str.set(format!("{}", cm.round() as i64));
-                set_weight_kg_str.set(format!("{}", kg.round() as i64));
+                set_height_cm_str.set(format!("{}", cm.round().clamp(100.0, 250.0) as i64));
+                set_weight_kg_str.set(format!("{}", kg.round().clamp(30.0, 200.0) as i64));
             }
             UnitSystem::Imperial => {
                 let cm: f64 = height_cm_str.get().parse().unwrap_or(0.0);
@@ -81,9 +87,9 @@ pub fn App() -> impl IntoView {
                 let ft = (total_inches / 12.0).floor();
                 let inch = total_inches - ft * 12.0;
                 let lbs = kg / KG_PER_LB;
-                set_height_ft_str.set(format!("{}", ft as i64));
-                set_height_in_str.set(format!("{}", inch.round() as i64));
-                set_weight_lbs_str.set(format!("{}", lbs.round() as i64));
+                set_height_ft_str.set(format!("{}", ft.clamp(3.0, 8.0) as i64));
+                set_height_in_str.set(format!("{}", inch.round().clamp(0.0, 11.0) as i64));
+                set_weight_lbs_str.set(format!("{}", lbs.round().clamp(60.0, 440.0) as i64));
             }
         }
         set_unit.set(new_unit);
@@ -150,46 +156,33 @@ pub fn App() -> impl IntoView {
                         <label class="th-label">"Height"</label>
                         {move || if is_metric.get() {
                             view! {
-                                <div class="relative">
-                                    <input
-                                        type="number"
-                                        prop:value=height_cm_str
-                                        on:input=move |ev| set_height_cm_str.set(event_target_value(&ev))
-                                        class="th-input"
-                                        placeholder="170"
-                                        step="1"
-                                        min="0"
+                                <div class="th-drum-wrap">
+                                    <DrumPicker
+                                        items={range_strings(100, 250)}
+                                        initial_value={height_cm_str.get_untracked()}
+                                        on_change={Callback::new(move |v| set_height_cm_str.set(v))}
                                     />
-                                    <span class="th-unit">"cm"</span>
+                                    <span class="th-drum-unit">"cm"</span>
                                 </div>
                             }.into_any()
                         } else {
                             view! {
-                                <div class="flex gap-2">
-                                    <div class="relative flex-1">
-                                        <input
-                                            type="number"
-                                            prop:value=height_ft_str
-                                            on:input=move |ev| set_height_ft_str.set(event_target_value(&ev))
-                                            class="th-input"
-                                            placeholder="5"
-                                            step="1"
-                                            min="0"
+                                <div class="th-drum-row">
+                                    <div class="th-drum-wrap">
+                                        <DrumPicker
+                                            items={range_strings(3, 8)}
+                                            initial_value={height_ft_str.get_untracked()}
+                                            on_change={Callback::new(move |v| set_height_ft_str.set(v))}
                                         />
-                                        <span class="th-unit">"ft"</span>
+                                        <span class="th-drum-unit">"ft"</span>
                                     </div>
-                                    <div class="relative flex-1">
-                                        <input
-                                            type="number"
-                                            prop:value=height_in_str
-                                            on:input=move |ev| set_height_in_str.set(event_target_value(&ev))
-                                            class="th-input"
-                                            placeholder="7"
-                                            step="1"
-                                            min="0"
-                                            max="11"
+                                    <div class="th-drum-wrap">
+                                        <DrumPicker
+                                            items={range_strings(0, 11)}
+                                            initial_value={height_in_str.get_untracked()}
+                                            on_change={Callback::new(move |v| set_height_in_str.set(v))}
                                         />
-                                        <span class="th-unit">"in"</span>
+                                        <span class="th-drum-unit">"in"</span>
                                     </div>
                                 </div>
                             }.into_any()
@@ -200,32 +193,24 @@ pub fn App() -> impl IntoView {
                         <label class="th-label">"Weight"</label>
                         {move || if is_metric.get() {
                             view! {
-                                <div class="relative">
-                                    <input
-                                        type="number"
-                                        prop:value=weight_kg_str
-                                        on:input=move |ev| set_weight_kg_str.set(event_target_value(&ev))
-                                        class="th-input"
-                                        placeholder="70"
-                                        step="0.1"
-                                        min="0"
+                                <div class="th-drum-wrap">
+                                    <DrumPicker
+                                        items={range_strings(30, 200)}
+                                        initial_value={weight_kg_str.get_untracked()}
+                                        on_change={Callback::new(move |v| set_weight_kg_str.set(v))}
                                     />
-                                    <span class="th-unit">"kg"</span>
+                                    <span class="th-drum-unit">"kg"</span>
                                 </div>
                             }.into_any()
                         } else {
                             view! {
-                                <div class="relative">
-                                    <input
-                                        type="number"
-                                        prop:value=weight_lbs_str
-                                        on:input=move |ev| set_weight_lbs_str.set(event_target_value(&ev))
-                                        class="th-input"
-                                        placeholder="154"
-                                        step="0.1"
-                                        min="0"
+                                <div class="th-drum-wrap">
+                                    <DrumPicker
+                                        items={range_strings(60, 440)}
+                                        initial_value={weight_lbs_str.get_untracked()}
+                                        on_change={Callback::new(move |v| set_weight_lbs_str.set(v))}
                                     />
-                                    <span class="th-unit">"lbs"</span>
+                                    <span class="th-drum-unit">"lbs"</span>
                                 </div>
                             }.into_any()
                         }}

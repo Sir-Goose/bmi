@@ -278,6 +278,89 @@ html, body {
     margin-top: 0.3rem;
     font-family: var(--th-font-body);
   }
+
+  .th-drum {
+    position: relative;
+    height: 120px;
+    border: 2px solid var(--th-border);
+    background: var(--th-input-bg);
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .th-drum-scroll {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 40px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .th-drum-scroll::-webkit-scrollbar { display: none; }
+
+  .th-drum-item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: center;
+    font-family: var(--th-font-number);
+    font-size: 1.1rem;
+    color: var(--th-text);
+  }
+
+  .th-drum-highlight {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    border-top: 2px solid var(--th-border);
+    border-bottom: 2px solid var(--th-border);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .th-drum::before,
+  .th-drum::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 40px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .th-drum::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--th-input-bg), transparent);
+  }
+  .th-drum::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--th-input-bg), transparent);
+  }
+
+  .th-drum-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .th-drum-unit {
+    font-size: 0.72rem;
+    color: var(--th-text-muted);
+    font-family: var(--th-font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    min-width: 1.5rem;
+  }
+
+  .th-drum-row {
+    display: flex;
+    gap: 0.75rem;
+  }
 }
 
 @keyframes th-enter {

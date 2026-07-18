@@ -2,6 +2,7 @@ use leptos::mount::mount_to_body;
 use leptos::prelude::*;
 
 mod app;
+mod drum;
 
 fn main() {
     _ = console_log::init_with_level(log::Level::Info);
