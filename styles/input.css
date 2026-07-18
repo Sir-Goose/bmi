@@ -4,6 +4,7 @@
    BRUTALIST THEME
    ================================================================ */
 :root {
+  color-scheme: light dark;
   --th-bg: #ffffff;
   --th-card-bg: #ffffff;
   --th-text: #000000;
@@ -54,6 +55,17 @@
     --cat-obese: #ff5252;
     --gauge-marker: #ffffff;
   }
+}
+
+/* ================================================================
+   BASE — set the canvas (html/body) background so the iOS/macOS
+   Safari overscroll/bounce area matches the theme instead of
+   flashing the browser default white.
+   ================================================================ */
+html, body {
+  margin: 0;
+  background-color: var(--th-bg);
+  color: var(--th-text);
 }
 
 /* ================================================================
