@@ -37,12 +37,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --th-bg: #000000;
-    --th-card-bg: #0a0a0a;
+    --th-card-bg: #000000;
     --th-text: #ffffff;
     --th-text-muted: #888888;
     --th-accent: #ff2b2b;
     --th-border: #2a2a2a;
-    --th-input-bg: #0a0a0a;
+    --th-input-bg: #000000;
     --th-input-border: #2a2a2a;
     --th-shadow: none;
     --th-focus-ring: 0 0 0 3px #ff2b2b;
@@ -84,26 +84,9 @@ html, body {
   }
 
   .th-card {
-    background: var(--th-card-bg);
-    border: 2px solid var(--th-border);
-    border-radius: var(--th-radius-lg);
-    box-shadow: var(--th-shadow);
     padding: 2rem;
     max-width: 26rem;
     width: 100%;
-    position: relative;
-    overflow: hidden;
-    animation: th-enter 0.35s steps(4);
-  }
-
-  .th-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: var(--th-accent-line);
   }
 
   .th-heading {
