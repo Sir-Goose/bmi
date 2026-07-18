@@ -37,16 +37,16 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --th-bg: #000000;
-    --th-card-bg: #000000;
+    --th-card-bg: #0a0a0a;
     --th-text: #ffffff;
     --th-text-muted: #888888;
     --th-accent: #ff2b2b;
-    --th-border: #ffffff;
-    --th-input-bg: #000000;
-    --th-input-border: #ffffff;
-    --th-shadow: 6px 6px 0px #ffffff;
+    --th-border: #2a2a2a;
+    --th-input-bg: #0a0a0a;
+    --th-input-border: #2a2a2a;
+    --th-shadow: none;
     --th-focus-ring: 0 0 0 3px #ff2b2b;
-    --th-accent-line: #ffffff;
+    --th-accent-line: #ff2b2b;
     --th-toggle-active-bg: #ffffff;
     --th-toggle-active-text: #000000;
     --cat-underweight: #5b8def;
@@ -282,8 +282,6 @@ html, body {
   .th-drum {
     position: relative;
     height: 120px;
-    border: 2px solid var(--th-border);
-    background: var(--th-input-bg);
     overflow: hidden;
     flex: 1;
     min-width: 0;
@@ -308,7 +306,7 @@ html, body {
     scroll-snap-align: center;
     font-family: var(--th-font-number);
     font-size: 1.1rem;
-    color: var(--th-text);
+    color: var(--th-text-muted);
   }
 
   .th-drum-highlight {
@@ -317,10 +315,10 @@ html, body {
     left: 0;
     right: 0;
     height: 40px;
-    border-top: 2px solid var(--th-border);
-    border-bottom: 2px solid var(--th-border);
+    background: var(--th-accent);
+    opacity: 0.1;
     pointer-events: none;
-    z-index: 2;
+    z-index: 0;
   }
 
   .th-drum::before,
@@ -335,11 +333,11 @@ html, body {
   }
   .th-drum::before {
     top: 0;
-    background: linear-gradient(to bottom, var(--th-input-bg), transparent);
+    background: linear-gradient(to bottom, var(--th-card-bg), transparent);
   }
   .th-drum::after {
     bottom: 0;
-    background: linear-gradient(to top, var(--th-input-bg), transparent);
+    background: linear-gradient(to top, var(--th-card-bg), transparent);
   }
 
   .th-drum-wrap {
